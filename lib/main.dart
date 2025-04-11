@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:game_app/view/homescreen_view.dart';
+import 'package:game_app/view/splaash_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }

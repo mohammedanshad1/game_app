@@ -13,14 +13,13 @@ class HomeBottomSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Upcoming Competition Section
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildSectionHeader('Upcoming Competition'),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 CarouselSlider(
                   options: CarouselOptions(
                     height: 200.0,
@@ -30,7 +29,7 @@ class HomeBottomSection extends StatelessWidget {
                     enableInfiniteScroll: false,
                     viewportFraction: 0.9,
                   ),
-                  items: [
+                  items: const [
                     CompetitionCard(
                       title: 'Lusail Center',
                       subtitle: '5 April, 7:30 PM | Friendly Match',
@@ -41,7 +40,7 @@ class HomeBottomSection extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildDotsIndicator(2),
               ],
             ),
@@ -49,13 +48,13 @@ class HomeBottomSection extends StatelessWidget {
 
           // Expert Coaches Section
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildSectionHeader('Expert Coaches'),
-                SizedBox(height: 16),
-                SingleChildScrollView(
+                const SizedBox(height: 16),
+                const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
@@ -91,13 +90,13 @@ class HomeBottomSection extends StatelessWidget {
 
           // Sports Items Section
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildSectionHeader('Sports Items'),
-                SizedBox(height: 16),
-                SingleChildScrollView(
+                const SizedBox(height: 16),
+                const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
@@ -118,17 +117,17 @@ class HomeBottomSection extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           // Upcoming Trainings Section
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildSectionHeader('Upcoming Trainings'),
-                SizedBox(height: 16),
-                SingleChildScrollView(
+                const SizedBox(height: 16),
+                const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
@@ -158,7 +157,7 @@ class HomeBottomSection extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
               ],
             ),
           ),
@@ -203,7 +202,7 @@ class HomeBottomSection extends StatelessWidget {
       children: List.generate(
         count,
         (index) => Container(
-          margin: EdgeInsets.symmetric(horizontal: 4.0),
+          margin: const EdgeInsets.symmetric(horizontal: 4.0),
           width: index == 0 ? 12.0 : 8.0,
           height: 8.0,
           decoration: BoxDecoration(
@@ -218,7 +217,7 @@ class HomeBottomSection extends StatelessWidget {
   Widget _buildFooter() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 40, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
       color: Colors.white,
       child: Column(
         children: [
@@ -231,7 +230,7 @@ class HomeBottomSection extends StatelessWidget {
               letterSpacing: 1.5,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             'BOWLING GAME COMMUNITY APP',
             style: GoogleFonts.poppins(
@@ -241,24 +240,24 @@ class HomeBottomSection extends StatelessWidget {
               letterSpacing: 0.5,
             ),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildFooterLink('Privacy Policy'),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               _buildFooterLink('Terms of service'),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               _buildFooterLink('FAQs'),
             ],
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Image.asset(
             AppAssets.footerManImage,
             height: 150,
             fit: BoxFit.contain,
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Text(
             'VERSION 2.0',
             style: GoogleFonts.poppins(
