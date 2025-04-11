@@ -117,6 +117,7 @@ class HomeBottomSection extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 16),
+                // In the Expert Coaches section, update the Row widget to include index:
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -126,6 +127,7 @@ class HomeBottomSection extends StatelessWidget {
                         '5.0 rating',
                         'Adult and Kids',
                         'assets/images/maneshbhai.png',
+                        0, // Add index parameter
                       ),
                       SizedBox(width: 10),
                       _buildCoachCardWithImage(
@@ -133,13 +135,15 @@ class HomeBottomSection extends StatelessWidget {
                         '4.5 rating',
                         'Adult and Kids',
                         'assets/images/jowrin.png',
+                        1, // Add index parameter
                       ),
                       SizedBox(width: 10),
                       _buildCoachCardWithImage(
                         'Marie',
                         '4.0 rating',
                         'Adult',
-                        'assets/images/upcoming.png',
+                        'assets/images/Rectangle 2396.png',
+                        2, // Add index parameter
                       ),
                     ],
                   ),
@@ -318,13 +322,20 @@ class HomeBottomSection extends StatelessWidget {
     );
   }
 
-  Widget _buildCoachCardWithImage(
-      String name, String rating, String category, String imagePath) {
+  Widget _buildCoachCardWithImage(String name, String rating, String category,
+      String imagePath, int index) {
+    // Define card colors in order
+    final List<Color> cardColors = [
+      Color(0xFFFFF3ED), // #FFF3ED
+      Color(0xFFE8F2FF), // #E8F2FF
+      Color(0xFFFFF3ED), // #FFF3ED
+    ];
+
     return Container(
       width: 150,
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: cardColors[index % cardColors.length], // Cycle through colors
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -337,43 +348,52 @@ class HomeBottomSection extends StatelessWidget {
       ),
       child: Column(
         children: [
+          // Rectangular image instead of circle
           Container(
-            width: 80,
-            height: 80,
+            width: double.infinity,
+            height: 100,
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
                 image: AssetImage(imagePath),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SizedBox(height: 8),
-          Text(
-            name,
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+          SizedBox(height: 12),
+          // Name aligned left
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              name,
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           SizedBox(height: 4),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.star, size: 16, color: Colors.orange),
-              SizedBox(width: 4),
-              Text(
-                rating,
-                style: GoogleFonts.poppins(fontSize: 12),
+          // Rating without star icon
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              rating,
+              style: GoogleFonts.poppins(
+                fontSize: 14,
+                color: Colors.black,
               ),
-            ],
+            ),
           ),
-          SizedBox(height: 4),
-          Text(
-            category,
-            style: GoogleFonts.poppins(
-              fontSize: 12,
-              color: Colors.grey[600],
+          SizedBox(height: 12), // Extra space after rating as in image
+          // Category aligned left
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              category,
+              style: GoogleFonts.poppins(
+                fontSize: 12,
+                color: Colors.grey[600],
+              ),
             ),
           ),
         ],
