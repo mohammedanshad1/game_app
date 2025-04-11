@@ -1,0 +1,446 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
+class HomeBottomSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Upcoming Competition Section with Carousel
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Upcoming Competition',
+                      style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        color: Color(0xFF090A4E),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Text(
+                        'View All',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          color: Colors.black,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16),
+                // Carousel Slider
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: 200.0, // Increased height to match the image
+                    enlargeCenterPage: true,
+                    autoPlay: false,
+                    aspectRatio: 16 / 9,
+                    enableInfiniteScroll: false,
+                    viewportFraction: 0.9,
+                    onPageChanged: (index, reason) {},
+                  ),
+                  items: [
+                    _buildCompetitionCard(
+                      'Lusail Center',
+                      '5 April, 7:30 PM | Friendly Match',
+                      'assets/images/upcoming.png',
+                    ),
+                    // Add more items as needed
+                    _buildCompetitionCard(
+                      'Another Center',
+                      '6 April, 6:00 PM | Tournament',
+                      'assets/images/upcoming.png',
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                // Dots indicator
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                      2,
+                      (index) => Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4.0),
+                            width:
+                                index == 0 ? 12.0 : 8.0, // Active dot is larger
+                            height: 8.0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: index == 0 ? Colors.orange : Colors.grey,
+                            ),
+                          )),
+                ),
+              ],
+            ),
+          ),
+
+          // Expert Coaches Section with Images
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Expert Coaches',
+                      style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        color: Color(0xFF090A4E),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Text(
+                        'View All',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          color: Colors.black,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _buildCoachCardWithImage(
+                        'Mensch Bind',
+                        '5.0 rating',
+                        'Adult and Kids',
+                        'assets/images/maneshbhai.png',
+                      ),
+                      SizedBox(width: 10),
+                      _buildCoachCardWithImage(
+                        'Jonvin George',
+                        '4.5 rating',
+                        'Adult and Kids',
+                        'assets/images/jowrin.png',
+                      ),
+                      SizedBox(width: 10),
+                      _buildCoachCardWithImage(
+                        'Marie',
+                        '4.0 rating',
+                        'Adult',
+                        'assets/images/upcoming.png',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Sports Items Section with Images
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Sports Items',
+                      style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        color: Color(0xFF090A4E),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Text(
+                        'View All',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          color: Colors.black,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _buildSportsItemCardWithImage(
+                        'Level Up your Game',
+                        'Bowling Ball',
+                        'assets/images/levelup.png',
+                      ),
+                      SizedBox(width: 10),
+                      _buildSportsItemCardWithImage(
+                        'Key games without plant',
+                        'Bowling Hand Gloves',
+                        'assets/images/playgame.png',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCompetitionCard(
+      String title, String subtitle, String imagePath) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Stack(
+          children: [
+            // Background Image
+            Container(
+              height: 200, // Fixed height for the image
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(imagePath),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            // Gradient overlay at bottom for better text visibility
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: 80,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Colors.black.withOpacity(0.8),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            // Text at bottom left
+            Positioned(
+              left: 16,
+              bottom: 16,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: Colors.white.withOpacity(0.9),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // JOIN NOW button at top right
+            Positioned(
+              right: 16,
+              top: 16,
+              child: InkWell(
+                onTap: () {
+                  // Add join action here
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.orange, // Dark blue color
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 4,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    'JOIN NOW',
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCoachCardWithImage(
+      String name, String rating, String category, String imagePath) {
+    return Container(
+      width: 150,
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(
+            name,
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.star, size: 16, color: Colors.orange),
+              SizedBox(width: 4),
+              Text(
+                rating,
+                style: GoogleFonts.poppins(fontSize: 12),
+              ),
+            ],
+          ),
+          SizedBox(height: 4),
+          Text(
+            category,
+            style: GoogleFonts.poppins(
+              fontSize: 12,
+              color: Colors.grey[600],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSportsItemCardWithImage(
+      String title, String itemName, String imagePath) {
+    return Container(
+      width: 180,
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(
+            title,
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 4),
+          Text(
+            itemName,
+            style: GoogleFonts.poppins(
+              fontSize: 12,
+              color: Colors.grey[600],
+            ),
+          ),
+          SizedBox(height: 8),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              'Read More',
+              style: GoogleFonts.poppins(
+                fontSize: 12,
+                color: Colors.blue,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
