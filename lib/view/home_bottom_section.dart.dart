@@ -194,7 +194,7 @@ class HomeBottomSection extends StatelessWidget {
                       ),
                       SizedBox(width: 10),
                       _buildSportsItemCardWithImage(
-                        'Key games without plant',
+                        'games without plant',
                         'Bowling Hand Gloves',
                         'assets/images/playgame.png',
                       ),
@@ -205,6 +205,58 @@ class HomeBottomSection extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
+
+          // Add this new section after the Sports Items section in your build method
+// Upcoming Trainings Section
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Upcoming Trainings',
+                      style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        color: Color(0xFF090A4E),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Text(
+                        'View All',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          color: Colors.black,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _buildTrainingCard('BBFS Academy', 'Doha municipality',
+                          '10.00 QAR/-', 'assets/images/bbfacademy.png', 0),
+                      SizedBox(width: 10),
+                      _buildTrainingCard('Jaint Academy', 'Lussail',
+                          '100.00 QAR/-', 'assets/images/jaintacademy.png', 1),
+                      SizedBox(width: 10),
+                      _buildTrainingCard('Arms Academy', 'Doha mur',
+                          '90.00 QAR', 'assets/images/arms.png', 2),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -368,7 +420,7 @@ class HomeBottomSection extends StatelessWidget {
               name,
               style: GoogleFonts.poppins(
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500, // Added for consistency
               ),
             ),
           ),
@@ -421,6 +473,7 @@ class HomeBottomSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Image Container
           Container(
             height: 100,
             decoration: BoxDecoration(
@@ -431,15 +484,17 @@ class HomeBottomSection extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 12),
+          // Title (bold and left-aligned)
           Text(
             title,
             style: GoogleFonts.poppins(
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500, // Added for consistency
             ),
           ),
           SizedBox(height: 4),
+          // Item Name (regular and left-aligned)
           Text(
             itemName,
             style: GoogleFonts.poppins(
@@ -447,16 +502,110 @@ class HomeBottomSection extends StatelessWidget {
               color: Colors.grey[600],
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 12),
+          // Orange "Read More" button
           Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              'Read More',
-              style: GoogleFonts.poppins(
-                fontSize: 12,
-                color: Colors.blue,
-                decoration: TextDecoration.underline,
+            alignment: Alignment.center,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 26, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.orange,
+                borderRadius: BorderRadius.circular(12),
               ),
+              child: Text(
+                'Read More',
+                style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTrainingCard(String academy, String location, String price,
+      String imagePath, int index) {
+    final List<Color> cardColors = [
+      Color(0xFFFFF3ED), // #FFF3ED
+      Color(0xFFE8F2FF), // #E8F2FF
+      Color(0xFFFFF3ED), // #FFF3ED
+    ];
+
+    return Container(
+      width: 150,
+      decoration: BoxDecoration(
+        color: cardColors[index % cardColors.length],
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment:
+            MainAxisAlignment.spaceBetween, // Added for alignment
+        children: [
+          // Image section
+          ClipRRect(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+            child: Image.asset(
+              imagePath,
+              height: 100,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+          ),
+          // Content section
+          Padding(
+            padding: EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Academy Name
+                ConstrainedBox(
+                  constraints:
+                      BoxConstraints(maxHeight: 40), // Fixed max height
+                  child: Text(
+                    academy,
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500, // Added for consistency
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                SizedBox(height: 4),
+                // Location
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxHeight: 36),
+                  child: Text(
+                    location,
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                SizedBox(height: 20),
+                // Price
+                Text(
+                  price,
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
