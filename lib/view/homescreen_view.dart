@@ -10,48 +10,54 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
-          'Lusail, Qatar',
-          style: GoogleFonts.poppins(
-            fontSize: 16,
-            color: Color(0xFF0F386D), // Hex color #0F386D
-          ),
+        title: Row(
+          children: [
+            Text(
+              'Lussail, Qatar',
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                color: Color(0xFF0F386D),
+              ),
+            ),
+            SizedBox(width: 4), // Small spacing between text and icon
+            Icon(
+              Icons.arrow_drop_down,
+              color: Color(0xFF0F386D), // Same color as the text
+              size: 20,
+            ),
+          ],
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Color(0xFFE8F2FF),
-                        borderRadius: BorderRadius.circular(12),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFE8F2FF),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Intermediate',
+                        style: GoogleFonts.poppins(
+                          fontSize: 12,
+                          color: Color(0xFF0F386D),
+                        ),
                       ),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Intermediate',
-                            style: GoogleFonts.poppins(
-                                fontSize: 12, color: Colors.blue),
-                          ),
-                          SizedBox(width: 4),
-                          Image(
-                              image: AssetImage("assets/images/image 880.png")),
-                        ],
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    CircleAvatar(
-                      backgroundColor: Color(0xFFFFF1EB),
-                      radius: 16,
-                      child: Image(
-                          image: AssetImage("assets/images/image 881.png")),
-                    ),
-                  ],
+                      SizedBox(width: 4),
+                      Image(image: AssetImage("assets/images/image 880.png")),
+                    ],
+                  ),
+                ),
+                SizedBox(width: 8),
+                CircleAvatar(
+                  backgroundColor: Color(0xFFFFF1EB),
+                  radius: 16,
+                  child:
+                      Image(image: AssetImage("assets/images/image 881.png")),
                 ),
               ],
             ),
@@ -227,7 +233,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: 26),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

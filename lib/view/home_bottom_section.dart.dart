@@ -224,17 +224,6 @@ class HomeBottomSection extends StatelessWidget {
                         color: Color(0xFF090A4E),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        'View All',
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: Colors.black,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ),
                   ],
                 ),
                 SizedBox(height: 16),
@@ -253,7 +242,106 @@ class HomeBottomSection extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
+              ],
+            ),
+          ),
+          // Add this footer section at the bottom of your Column widget
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(
+                vertical: 40, horizontal: 16), // Increased vertical padding
+            color: Colors.white,
+            child: Column(
+              children: [
+                // STRIKE text in orange - made larger and more prominent
+                Text(
+                  'STRIKE',
+                  style: GoogleFonts.poppins(
+                    fontSize: 32, // Increased from 24
+                    fontWeight: FontWeight.bold,
+                    color: Colors.orange,
+                    letterSpacing: 1.5, // Added letter spacing
+                  ),
+                ),
+                SizedBox(height: 8), // Increased spacing
+
+                // Bowling game community text - made slightly larger
+                Text(
+                  'BOWLING GAME COMMUNITY APP',
+                  style: GoogleFonts.poppins(
+                    fontSize: 16, // Increased from 14
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500, // Added medium weight
+                    letterSpacing: 0.5,
+                  ),
+                ),
+
+                SizedBox(height: 30), // Increased spacing
+
+                // Links row - made more prominent
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {},
+                      child: Text(
+                        'Privacy Policy',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14, // Increased from 12
+                          color: Color(0xFFF2560B),
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20), // Increased spacing
+                    InkWell(
+                      onTap: () {},
+                      child: Text(
+                        'Terms of service',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14, // Increased from 12
+                          color: Color(0xFFF2560B),
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20), // Increased spacing
+                    InkWell(
+                      onTap: () {},
+                      child: Text(
+                        'FAQs',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14, // Increased from 12
+                          color: Color(0xFFF2560B),
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 30), // Increased spacing
+
+                // Image of the man - made larger
+                Image.asset(
+                  'assets/images/man.png',
+                  height: 150, // Increased from 100
+                  fit: BoxFit.contain,
+                ),
+                SizedBox(height: 30), // Increased spacing
+
+                // Version text - made slightly larger
+                Text(
+                  'VERSION 2.0',
+                  style: GoogleFonts.poppins(
+                    fontSize: 14, // Increased from 12
+                    color: Color(0xFFACACAC),
+                    letterSpacing: 1.0,
+                  ),
+                ),
               ],
             ),
           ),
