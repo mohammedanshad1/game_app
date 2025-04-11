@@ -6,46 +6,58 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.white,
         elevation: 0,
         // title: Text(
         //   'St Home',
         //   style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
         // ),
+        title: Text(
+          'Lusail, Qatar',
+          style: GoogleFonts.poppins(fontSize: 16),
+        ),
+        // Upward arrow icon (opposite of location icon)
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment
+                  .spaceAround, // To position elements at corners
               children: [
-                Text(
-                  'Lusail, Qatar',
-                  style: GoogleFonts.poppins(fontSize: 14),
-                ),
-                SizedBox(width: 8),
-                Icon(Icons.location_on, size: 16),
-                SizedBox(width: 8),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: Colors.blue[100],
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Intermediate',
-                        style: GoogleFonts.poppins(
-                            fontSize: 12, color: Colors.blue),
+                // Right corner: Intermediate container and notification avatar
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Color(0xFFE8F2FF), // Hex #E8F2FF
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      SizedBox(width: 4),
-                      Image(
+                      child: Row(
+                        children: [
+                          Text(
+                            'Intermediate',
+                            style: GoogleFonts.poppins(
+                                fontSize: 12, color: Colors.blue),
+                          ),
+                          SizedBox(width: 4),
+                          Image(
+                              image: AssetImage(
+                                  "assets/images/image 880.png")), // Ensure this asset exists
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    // Notification icon in circular avatar
+                    CircleAvatar(
+                      backgroundColor: Color(0xFFFFF1EB), // Hex #FFF1EB
+                      radius: 16,
+                      child: Image(
                           image: AssetImage(
-                              "assets/images/image 880.png")), // Ensure this asset exists
-                    ],
-                  ),
+                              "assets/images/image 881.png")), // Ensure this asset exists
+                    ),
+                  ],
                 ),
-                SizedBox(width: 8),
-                Icon(Icons.notifications, size: 20),
               ],
             ),
           ),
@@ -56,54 +68,107 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Banner Section
-            Container(
-              height: 150,
-              width: double.infinity,
-              color: Colors.grey[300],
-              child: Stack(
-                children: [
-                  Center(
-                    child: Image.asset(
-                      'assets/images/image.png', // Replace with your image asset
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 20,
-                    left: 20,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Keep yourself fit with us',
-                          style: GoogleFonts.poppins(
-                              fontSize: 18, color: Colors.black),
+            // Banner Section
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 200, // Fixed height for the container
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                      16), // Rounded corners for container
+                  color: Colors.grey[300], // Fallback color
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                      16), // Match container's border radius
+                  child: Stack(
+                    children: [
+                      // Background image that fills the container
+                      Image.asset(
+                        'assets/images/image.png', // Your bowling image
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity, // Fill the container
+                      ),
+                      // Gradient overlay for better text visibility
+                      Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              Colors.black.withOpacity(0.3),
+                              Colors.transparent,
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 8),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.orange,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
+                      ),
+                      Positioned(
+                        left: 20,
+                        bottom: 20,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Keep yourself fit with us',
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                                color: Color(0xFF0F386D), // Hex color #0F386D
+                                // Changed to white for better visibility
+                              ),
                             ),
-                          ),
-                          child: Text(
-                            'CREATE YOUR GAME',
-                            style: GoogleFonts.poppins(
-                                fontSize: 14, color: Colors.white),
-                          ),
+                            SizedBox(height: 4),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'CREATE YOUR',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 24, // Increased font size
+                                    color: Colors.orange,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'GAME',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 24, // Increased font size
+                                    color: Colors.orange,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 12),
+                            // "JOIN NOW" button
+                            InkWell(
+                              onTap: () {
+                                // Add your join now functionality
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 24, vertical: 10),
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF141252),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  'JOIN NOW',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 8),
-                        Text(
-                          'JOIN NOW',
-                          style: GoogleFonts.poppins(
-                              fontSize: 14, color: Colors.blue),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
             // Featured Centers Section
@@ -117,13 +182,12 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Featured Centers',
-                        style: GoogleFonts.poppins(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.poppins(fontSize: 18),
                       ),
                       Text(
                         'View All',
                         style: GoogleFonts.poppins(
-                            fontSize: 14, color: Colors.blue),
+                            fontSize: 14, color: Colors.black),
                       ),
                     ],
                   ),
@@ -141,8 +205,8 @@ class HomeScreen extends StatelessWidget {
                           'Lusail',
                           '12 km',
                           '5.0 Rating',
-                          '120.00 QR/-',
-                          Colors.orange[100]!,
+                          '120.00',
+                          Color(0xFFFFF3ED), // Hex #FFF3ED
                           'assets/images/image (1).png', // Replace with your image asset
                         ),
                         SizedBox(width: 10), // Space between cards
@@ -152,8 +216,8 @@ class HomeScreen extends StatelessWidget {
                           'Doha',
                           '1.5 km',
                           '5.0 Rating',
-                          '90.00 QR/-',
-                          Colors.blue[100]!,
+                          '90.00',
+                          Color(0xFFE8F2FF), // Hex #E8F2FF
                           'assets/images/image (2).png', // Replace with your image asset
                         ),
                         SizedBox(width: 10), // Space between cards
@@ -163,8 +227,8 @@ class HomeScreen extends StatelessWidget {
                           'Lusail',
                           '0 km',
                           '5.0 Rating',
-                          '120.00 QR/-',
-                          Colors.green[100]!,
+                          '120.00',
+                          Color(0xFFFFF1EB), // Hex #FFF1EB
                           'assets/images/image (3).png', // Replace with your image asset
                         ),
                       ],
@@ -196,17 +260,53 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.play_arrow), label: 'Play'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.location_city), label: 'Venue'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-        currentIndex: 0,
-        selectedItemColor: Colors.blue,
-        onTap: (index) {},
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Color(0xFF141252), // Background color #141252
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home, color: Colors.white),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.play_arrow, color: Colors.white),
+              label: 'Play',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.location_city, color: Colors.white),
+              label: 'Venue',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person, color: Colors.white),
+              label: 'Profile',
+            ),
+          ],
+          currentIndex: 0,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white.withOpacity(0.7),
+          selectedLabelStyle: GoogleFonts.poppins(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+          unselectedLabelStyle: GoogleFonts.poppins(
+            fontSize: 12,
+          ),
+          onTap: (index) {
+            // Handle navigation
+          },
+        ),
       ),
     );
   }
@@ -222,8 +322,8 @@ class HomeScreen extends StatelessWidget {
       String imagePath) {
     return Container(
       width: MediaQuery.of(context).size.width *
-          0.45, // Width ~31% to match screenshot
-      height: 220, // Height ~220 pixels to match screenshot
+          0.45, // Width ~45% to match screenshot
+      height: 290, // Height ~290 pixels to match your design
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(
@@ -241,7 +341,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           // Image at the top
           Container(
-            height: 80, // Increased image height to fit the taller card
+            height: 120, // Increased image height to fit the taller card
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
@@ -257,46 +357,51 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment:
+                    CrossAxisAlignment.start, // Align text to the left
                 children: [
                   Text(
                     title,
-                    style: GoogleFonts.poppins(
-                        fontSize: 14, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(fontSize: 18),
+                    textAlign: TextAlign.left,
                   ),
                   SizedBox(height: 2),
                   Text(
                     '$location - $distance',
-                    style: GoogleFonts.poppins(fontSize: 12),
-                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(fontSize: 15),
+                    textAlign: TextAlign.left,
                   ),
                   SizedBox(height: 4),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 4,
+                        vertical: 4), // Decreased width, increased height
                     decoration: BoxDecoration(
-                      color: Colors.orange,
+                      color: Colors.white, // White background
                       borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                          color:
+                              Colors.grey[300]!), // Light border for visibility
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.star, size: 14, color: Colors.white),
+                        Icon(Icons.star, size: 15, color: Colors.orange),
                         SizedBox(width: 4),
                         Text(
                           rating,
                           style: GoogleFonts.poppins(
-                              fontSize: 12, color: Colors.white),
+                              fontSize: 15, color: Colors.black),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 4),
+                  SizedBox(height: 20),
                   Text(
-                    price,
+                    '$price QR/-', // Append "QR/-" to price
                     style: GoogleFonts.poppins(
-                        fontSize: 12, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                        fontSize: 18, color: Color(0xFFC9511D)), // Hex #C9511D
+                    textAlign: TextAlign.left,
                   ),
                 ],
               ),
