@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/core/constants/assets.dart/app_images.dart';
+import 'package:game_app/core/constants/colors.dart/app_colors.dart';
 import 'package:game_app/view/home_bottom_section.dart.dart';
+import 'package:game_app/widgets/homescreen_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // White background for entire scaffold
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -16,13 +20,13 @@ class HomeScreen extends StatelessWidget {
               'Lussail, Qatar',
               style: GoogleFonts.poppins(
                 fontSize: 16,
-                color: Color(0xFF0F386D),
+                color: AppColors.primaryDarkBlue,
               ),
             ),
-            SizedBox(width: 4), // Small spacing between text and icon
+            SizedBox(width: 4),
             Icon(
               Icons.arrow_drop_down,
-              color: Color(0xFF0F386D), // Same color as the text
+              color: AppColors.primaryDarkBlue,
               size: 20,
             ),
           ],
@@ -35,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Color(0xFFE8F2FF),
+                    color: AppColors.lightBlueBg,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -44,20 +48,19 @@ class HomeScreen extends StatelessWidget {
                         'Intermediate',
                         style: GoogleFonts.poppins(
                           fontSize: 12,
-                          color: Color(0xFF0F386D),
+                          color: AppColors.primaryDarkBlue,
                         ),
                       ),
                       SizedBox(width: 4),
-                      Image(image: AssetImage("assets/images/image 880.png")),
+                      Image(image: AssetImage(AppAssets.levelIcon)),
                     ],
                   ),
                 ),
                 SizedBox(width: 8),
                 CircleAvatar(
-                  backgroundColor: Color(0xFFFFF1EB),
+                  backgroundColor: AppColors.lightOrangeIconBg,
                   radius: 16,
-                  child:
-                      Image(image: AssetImage("assets/images/image 881.png")),
+                  child: Image(image: AssetImage(AppAssets.profileIcon)),
                 ),
               ],
             ),
@@ -83,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       Image.asset(
-                        'assets/images/image.png',
+                        AppAssets.bannerImage,
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,
@@ -110,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                               'Keep yourself fit with us',
                               style: GoogleFonts.poppins(
                                 fontSize: 18,
-                                color: Color(0xFF0F386D),
+                                color: AppColors.primaryDarkBlue,
                               ),
                             ),
                             SizedBox(height: 4),
@@ -142,7 +145,7 @@ class HomeScreen extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 24, vertical: 10),
                                 decoration: BoxDecoration(
-                                  color: Color(0xFF141252),
+                                  color: AppColors.darkNavy,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Text(
@@ -176,7 +179,7 @@ class HomeScreen extends StatelessWidget {
                         'Featured Centers',
                         style: GoogleFonts.poppins(
                           fontSize: 18,
-                          color: Color(0xFF090A4E), // Hex color #090A4E
+                          color: AppColors.darkBlue,
                         ),
                       ),
                       InkWell(
@@ -198,37 +201,34 @@ class HomeScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        _buildCenterCard(
-                          context,
-                          'Arena',
-                          'Lusail',
-                          '12 km',
-                          '5.0 Rating',
-                          '120.00',
-                          Color(0xFFFFF3ED),
-                          'assets/images/image (1).png',
+                        CustomCenterCard(
+                          title: 'Arena',
+                          location: 'Lusail',
+                          distance: '12 km',
+                          rating: '5.0 Rating',
+                          price: '120.00',
+                          color: AppColors.lightOrangeBg,
+                          imagePath: AppAssets.arenaImage,
                         ),
                         SizedBox(width: 10),
-                        _buildCenterCard(
-                          context,
-                          'Oasis padel',
-                          'Doha',
-                          '1.5 km',
-                          '5.0 Rating',
-                          '90.00',
-                          Color(0xFFE8F2FF),
-                          'assets/images/image (2).png',
+                        CustomCenterCard(
+                          title: 'Oasis padel',
+                          location: 'Doha',
+                          distance: '1.5 km',
+                          rating: '5.0 Rating',
+                          price: '90.00',
+                          color: AppColors.lightBlueBg,
+                          imagePath: AppAssets.oasisImage,
                         ),
                         SizedBox(width: 10),
-                        _buildCenterCard(
-                          context,
-                          'Rivu',
-                          'Lusail',
-                          '0 km',
-                          '5.0 Rating',
-                          '120.00',
-                          Color(0xFFFFF1EB),
-                          'assets/images/image (3).png',
+                        CustomCenterCard(
+                          title: 'Rivu',
+                          location: 'Lusail',
+                          distance: '0 km',
+                          rating: '5.0 Rating',
+                          price: '120.00',
+                          color: AppColors.lightOrangeIconBg,
+                          imagePath: AppAssets.rivuImage,
                         ),
                       ],
                     ),
@@ -237,20 +237,28 @@ class HomeScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildActionCard(context, 'Book a Venue',
-                          'assets/images/image (6).png'),
-                      _buildActionCard(context, 'Host a Match',
-                          'assets/images/image (4).png'),
+                      CustomActionCard(
+                        title: 'Book a Venue',
+                        imagePath: AppAssets.bookVenueImage,
+                      ),
+                      CustomActionCard(
+                        title: 'Host a Match',
+                        imagePath: AppAssets.hostMatchImage,
+                      ),
                     ],
                   ),
                   SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildActionCard(
-                          context, 'Coaches', 'assets/images/image (5).png'),
-                      _buildActionCard(
-                          context, 'Shop Now', 'assets/images/image (3).png'),
+                      CustomActionCard(
+                        title: 'Coaches',
+                        imagePath: AppAssets.coachesImage,
+                      ),
+                      CustomActionCard(
+                        title: 'Shop Now',
+                        imagePath: AppAssets.rivuImage,
+                      ),
                     ],
                   ),
                 ],
@@ -262,7 +270,7 @@ class HomeScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Color(0xFF141252),
+          color: AppColors.darkNavy,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
@@ -304,134 +312,6 @@ class HomeScreen extends StatelessWidget {
             fontSize: 12,
           ),
           onTap: (index) {},
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCenterCard(
-      BuildContext context,
-      String title,
-      String location,
-      String distance,
-      String rating,
-      String price,
-      Color color,
-      String imagePath) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.45,
-      height: 290,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Container(
-            height: 120,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-              image: DecorationImage(
-                image: AssetImage(imagePath),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: GoogleFonts.poppins(fontSize: 18),
-                    textAlign: TextAlign.left,
-                  ),
-                  SizedBox(height: 2),
-                  Text(
-                    '$location - $distance',
-                    style: GoogleFonts.poppins(fontSize: 15),
-                    textAlign: TextAlign.left,
-                  ),
-                  SizedBox(height: 4),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.grey[300]!),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.star, size: 15, color: Colors.orange),
-                        SizedBox(width: 4),
-                        Text(
-                          rating,
-                          style: GoogleFonts.poppins(
-                              fontSize: 15, color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    '$price QR/-',
-                    style: GoogleFonts.poppins(
-                        fontSize: 18, color: Color(0xFFC9511D)),
-                    textAlign: TextAlign.left,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActionCard(
-      BuildContext context, String title, String imagePath) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.45,
-      height: 120,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        image: DecorationImage(
-          image: AssetImage(imagePath),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken),
-        ),
-      ),
-      child: Center(
-        child: Text(
-          title,
-          style: GoogleFonts.poppins(
-            fontSize: 16,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.underline,
-            decorationColor: Colors.white, // White underline color
-            shadows: [
-              Shadow(
-                blurRadius: 10,
-                color: Colors.black.withOpacity(0.5),
-                offset: Offset(2, 2),
-              ),
-            ],
-          ),
-          textAlign: TextAlign.center,
         ),
       ),
     );
